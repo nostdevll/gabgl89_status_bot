@@ -1,0 +1,15 @@
+{
+  "name": "gabgl89_status_bot",
+  "version": "1.0.0",
+  "description": "Bot Discord qui détecte le live Twitch et change le statut + envoie une annonce.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "node-fetch": "^3.3.2"
+  }
+}

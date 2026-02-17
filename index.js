@@ -16,13 +16,13 @@ const TWITCH_CLIENT_SECRET = process.env.TWITCH_CLIENT_SECRET;
 const TWITCH_USER_ID = process.env.TWITCH_USER_ID;
 
 // TES IDs
-const ANNOUNCE_CHANNEL_ID = "1253773341660020807";
-const ROLE_LIVE_ID = "1253747478939959369";
-const TWITCH_LINK = "https://twitch.tv/nost_fl";
+const ANNOUNCE_CHANNEL_ID = process.env.ANNOUNCE_CHANNEL_ID;
+const ROLE_LIVE_ID = process.env.ROLE_LIVE_ID;
+const TWITCH_LINK = process.env.TWITCH_LINK;
 
 // Statuts Discord
-const LIVE_STATUS = "🔴 En live sur Twitch";
-const OFFLINE_STATUS = "🟢 Commission Open";
+const LIVE_STATUS = "🔴 gabgl89 est en live !";
+const OFFLINE_STATUS = "🟢 En attente du live";
 
 // -----------------------------
 //  CLIENT DISCORD
@@ -56,7 +56,7 @@ async function announceLiveStart() {
   try {
     const channel = await client.channels.fetch(ANNOUNCE_CHANNEL_ID);
     await channel.send({
-      content: `<@&${ROLE_LIVE_ID}> 🔴 **Nost est en LIVE !**\n${TWITCH_LINK}`
+      content: `<@&${ROLE_LIVE_ID}> 🔴 **gabgl89 est en LIVE !**\n${TWITCH_LINK}`
     });
   } catch (err) {
     console.error("Erreur annonce live start :", err);
@@ -126,13 +126,11 @@ async function checkLive() {
 client.on("ready", async () => {
   console.log(`Bot connecté en tant que ${client.user.tag}`);
 
-  // Statut par défaut
   client.user.setPresence({
     activities: [{ name: OFFLINE_STATUS }],
     status: "online"
   });
 
-  // Premier check + intervalle
   await checkLive();
   setInterval(checkLive, 30000);
 });
